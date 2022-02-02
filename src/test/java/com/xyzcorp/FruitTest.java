@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class FruitTest {
 
     @Test
-    public void Test() {
+    public void testFruit() {
         given()
                 .relaxedHTTPSValidation()
                 .accept(ContentType.JSON)
@@ -18,7 +18,19 @@ public class FruitTest {
                 .get("https://staging.tiered-planet.net/mild-temper/fruits")
                 .then()
                 .assertThat()
-                .body("[0].description",equalTo("Winter fruit"));
+                .body("[0].description", equalTo("Winter fruit"));
+
+    }
+    @Test
+    public void testLegumes() {
+        given()
+                .relaxedHTTPSValidation()
+                .accept(ContentType.JSON)
+                .when()
+                .get("https://staging.tiered-planet.net/mild-temper/legumes")
+                .then()
+                .assertThat()
+                .body("[1].name",equalTo("Zucchini"));
 
     }
 }
